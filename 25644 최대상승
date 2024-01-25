@@ -1,0 +1,12 @@
+#include <iostream>
+int main() {
+    int n,min=1e9,tmp,max=0;
+    scanf("%d", &n);
+    while(n--){
+        scanf("%d", &tmp);
+        if(tmp<min) min = tmp;
+        if(tmp-min>max) max = tmp-min;
+    }
+    printf("%d", max);
+    return 0;
+}

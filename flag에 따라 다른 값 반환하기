@@ -1,0 +1,2 @@
+def solution(a, b, flag):
+    return a+(flag*2-1)*b

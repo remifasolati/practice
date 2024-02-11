@@ -1,0 +1,10 @@
+    for i in range(l,r+1):
+        if i%5!=0: continue
+        s = str(i)
+        for j in range(len(s)):
+            if s[j]!='0' and s[j]!='5':
+                s = 'false'
+                break
+        if s!='false': answer.append(int(s))
+    if not answer: answer.append(-1)
+    return answer

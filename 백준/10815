@@ -1,0 +1,38 @@
+#include <iostream>
+#include <algorithm>
+#define MAX 500001
+
+int n,m,i;
+int arr1[MAX];
+int arr2[MAX];
+
+void binarySearch(int num){
+    int s=0,e=n-1,mid;
+    while(s<=e){
+        mid=(s+e)>>1;
+        if (num == arr1[mid]){
+            printf("1 ");
+            return;
+        }else if(arr1[mid] < num){
+            s = mid + 1;
+        }else{
+            e = mid - 1;
+        }
+    }
+    printf("0 ");
+}
+
+bool compare(int a, int b){
+    return a<b;
+}
+
+int main() {
+    for(scanf("%d",&n),i=0;i<n;i++) scanf("%d", &arr1[i]);
+    for(scanf("%d",&m),i=0;i<m;i++) scanf("%d", &arr2[i]);
+    
+    std::sort(arr1,arr1+n,compare);
+
+    for(i=0;i<m;i++) binarySearch(arr2[i]);
+
+    return 0;
+}

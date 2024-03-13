@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 500001
+
+int n,m,i,arr[MAX],card;
+
+int lowerBound(int num){
+    int s=0,e=n,mid;
+    while(s<e){
+        mid = (s+e)>>1;
+        if(num <= arr[mid]){
+            e = mid;
+        }else{
+            s = mid + 1;
+        }
+    }
+    return s;
+}
+
+int upperBound(int num){
+    int s=0,e=n,mid;
+    while(s<e){
+        mid = (s+e)>>1;
+        if(num < arr[mid]){
+            e = mid;
+        }else{
+            s = mid + 1;
+        }
+    }
+    return e;
+}
+
+int compareASC(const void* a, const void* b){
+    return *(int*)a - *(int*)b;
+}
+
+int main() {
+    for(scanf("%d",&n),i=0;i<n;i++) scanf("%d", &arr[i]);
+
+    qsort(arr,n,sizeof(n),compareASC);
+
+    scanf("%d",&m);    
+    while(m--){
+        scanf("%d", &card);
+        printf("%d ", upperBound(card)-lowerBound(card));
+    }
+    return 0;
+}

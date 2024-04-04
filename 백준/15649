@@ -1,0 +1,27 @@
+#include <iostream>
+
+int N,M,a[9],c[9];
+
+void dfs(int depth){
+    int i;
+    if(depth==M){
+        for(i=0;i<M;i++){
+            printf("%d ", a[i]);
+        }
+        printf("\n");
+    }
+    for(i=1;i<=N;i++){
+        if(!c[i]){
+            c[i] = 1;
+            a[depth] = i;
+            dfs(depth+1);
+            c[i] = 0;
+        }
+    }
+}
+
+int main() {
+    scanf("%d %d", &N, &M);
+    dfs(0);
+    return 0;
+}

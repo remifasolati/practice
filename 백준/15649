@@ -9,13 +9,14 @@ void dfs(int depth){
             printf("%d ", a[i]);
         }
         printf("\n");
-    }
-    for(i=1;i<=N;i++){
-        if(!c[i]){
-            c[i] = 1;
-            a[depth] = i;
-            dfs(depth+1);
-            c[i] = 0;
+    }else{
+        for(i=1;i<=N;i++){
+            if(!c[i]){
+                c[i] = 1;
+                a[depth] = i;
+                dfs(depth+1);
+                c[i] = 0;
+            }
         }
     }
 }

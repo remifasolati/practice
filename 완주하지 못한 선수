@@ -8,21 +8,17 @@ string solution(vector<string> participant, vector<string> completion) {
     string answer = "";
     unordered_map<string, int> map;
     int i, mySize = participant.size();
-
     for(i=0; i<mySize; i++){
         map[participant[i]]++;
     }
-    
     for(i=0;i<mySize-1;i++){
         map[completion[i]]--;
     }
-    
     for(i=0;i<mySize;i++){
         if(map[participant[i]] != 0){
             answer = participant[i];
             break;
         }
     }
-
     return answer;
 }

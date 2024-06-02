@@ -1,0 +1,46 @@
+#include <iostream>
+#include <queue>
+#include <cstring>
+using namespace std;
+vector<int> v[101];
+bool visit[101];
+int bfs(int num){
+    queue<pair<int,int>> q;
+    q.push({num,0});
+    visit[num] = true;
+    int cur,cnt,size,next,i,total=0;
+    while(!q.empty()){
+        cur = q.front().first;
+        cnt = q.front().second;
+        total += cnt;
+        q.pop();
+        size = v[cur].size();
+        for(i=0;i<size;i++){
+            next = v[cur][i];
+            if(!visit[next]){
+                visit[next] = true;
+                q.push({next,cnt+1});
+            }
+        }
+    }
+    return total;
+}
+int main() {
+    int n,m,a,b,i,val,minVal,ans;
+    scanf("%d %d", &n, &m);
+    while(m--){
+        scanf("%d %d", &a, &b);
+        v[a].push_back(b);
+        v[b].push_back(a);
+    }
+    for(i=1,minVal=2e9;i<=n;i++){
+        memset(visit, false, sizeof(visit));
+        val = bfs(i);
+        if(val < minVal){
+            minVal = val;
+            ans = i;
+        }
+    }
+    printf("%d", ans);
+    return 0;
+}
